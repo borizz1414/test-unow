@@ -1,0 +1,59 @@
+<div class="container-login flex justify-content-center align-items-center">
+  <p-card styleClass="p-5 m-2">
+    <div class="logo-card flex justify-content-center mb-4">
+      <img src="assets/img/logo.png" alt="" />
+    </div>
+    <form class="flex flex-column" [formGroup]="formLogin" (ngSubmit)="send()">
+      <div class="mb-5">
+        <h3>Bienvenido/a</h3>
+        <p>Introduce tus credenciales para acceder</p>
+      </div>
+      <div class="field grid">
+        <label for="firstname3" class="col-fixed w-4">Usuario</label>
+        <div class="col">
+          <input
+            formControlName="email"
+            type="text"
+            class="p-inputtext-sm w-full"
+            pInputText
+          />
+          <small
+            class="text-500"
+            *ngIf="email.touched && email.errors?.['required']"
+            >Campo obligatorio</small
+          >
+          <small class="text-500" *ngIf="email.touched && email.errors?.['email']"
+            >Email no valido</small
+          >
+        </div>
+      </div>
+      <div class="field grid">
+        <label for="firstname3" class="col-fixed w-4">Contraseña</label>
+        <div class="col">
+          <input
+            formControlName="password"
+            type="password"
+            class="p-inputtext-sm w-full"
+            pInputText
+            id="password"
+          />
+          <small
+            class="text-500"
+            *ngIf="password.touched && password.errors?.['required']"
+            >Campo obligatorio</small
+          >
+        </div>
+      </div>
+
+      <button
+        pButton
+        [disabled]="formLogin.invalid"
+        class="mt-2"
+        label="Acceder"
+        type="button"
+        (click)="send()"
+      ></button>
+      <p class="mt-4 text-center text-500" *ngIf="invalid">Datos invalidos</p>
+    </form>
+  </p-card>
+</div>

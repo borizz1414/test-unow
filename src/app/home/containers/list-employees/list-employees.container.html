@@ -1,0 +1,22 @@
+<nav class="p-3 flex justify-content-between">
+  <h3>ENDALIA HR</h3>
+  <i class="pi pi-arrow-circle-left" (click)="logout()"></i>
+</nav>
+
+<div class="grid m-2">
+  <div class="col-6">
+    <input
+      type="text"
+      [formControl]="search"
+      (keyup)="searchText()"
+      pInputText
+      placeholder="Buscar username"
+      class="w-full"
+    />
+  </div>
+</div>
+<div class="m-2 grid">
+  <div class="col-6" *ngFor="let user of users; index as i">
+    <app-list [user]="user"></app-list>
+  </div>
+</div>

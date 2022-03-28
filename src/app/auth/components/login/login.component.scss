@@ -1,0 +1,14 @@
+.container-login {
+  background: url("../../../../assets/img/bg/login.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  height: 100vh;
+  
+  .logo-card {
+      img {
+          width: 50%;
+      }
+      margin: 8px;
+  }
+}
