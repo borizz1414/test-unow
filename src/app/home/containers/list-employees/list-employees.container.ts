@@ -20,20 +20,28 @@ export class ListEmployees implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._users.getUsers().subscribe((val) => {
-      console.log(val);
-      this.users = val;
-    });
+    this.getUsers();
+  }
 
-    this.search.valueChanges.subscribe((text: any) => {
-      const user = this.users.filter((val: any) => val.username == text);
-      this.users = user;
-      console.log(user);
+  getUsers() {
+    this._users.getUsers().subscribe((val) => {
+      this.users = val;
     });
   }
   searchText() {
-    console.log(this.search.value);
-    this.users.filter((val: any) => val.username == this.search.value);
+    this.filterSearch(this.search.value);
+  }
+  filterSearch(text: any) {
+    if (text == '') return this.getUsers();
+    const textValue = text.toLowerCase();
+    const user = this.users.filter(
+      (val: any) =>
+        val.username.toLowerCase().includes(textValue) ||
+        val.name.toLowerCase().includes(textValue) ||
+        val.email.toLowerCase().includes(textValue) ||
+        val.phone.toLowerCase().includes(textValue)
+    );
+    user.length > 0 ? (this.users = user) : this.getUsers();
   }
   logout() {
     this._auth.logout();
